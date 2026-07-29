@@ -6,13 +6,17 @@ public:
             return s;
          queue<TreeNode*>q;
           q.push(root);
+          bool x=true;
+
         while(!q.empty()){
-            vector<int>store;
-            int n=q.size(); 
+             int n=q.size();
+            vector<int>store(n);
+            
             for(int i=0;i<n;i++){
                TreeNode*  temp=q.front();
                  q.pop();
-                 store.push_back(temp->val);
+                 int index=x?i:n-i-1;
+                 store[index]=temp->val;
                  if(temp->left!=nullptr){
                     q.push(temp->left);
                     }
@@ -20,13 +24,10 @@ public:
                     q.push(temp->right);
                  }        
             }
-            s.push_back(store);
+        s.push_back(store);
+         x=!x;
         }
-        for(int i=0;i<s.size();i++){
-            if(i%2!=0){
-                reverse(s[i].begin(), s[i].end());
-            }
-    }
+       
         return s;
     }
 };
