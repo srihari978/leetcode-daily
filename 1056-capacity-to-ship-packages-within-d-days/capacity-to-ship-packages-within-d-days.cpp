@@ -1,28 +1,27 @@
 class Solution {
 public:
     int shipWithinDays(vector<int>& weights, int days) {
-        int sum = 0;
-        int day = 0;
         int low = 0;
         int high = 0;
-        for (int i : weights) {
-            low = max(i, low);
-            high += i;
+        int sum = 0;
+        for (int x : weights) {
+            low = max(low, x);
+            high += x;
         }
-        while (low < high) {
+        while (low <= high) {
             int mid = low + (high - low) / 2;
             int sum = 0;
             int day = 1;
-            for (int i : weights) {
-                if (sum + i <= mid) {
-                    sum += i;
+            for (int a : weights) {
+                if (sum + a <= mid) {
+                    sum = sum + a;
                 } else {
                     day++;
-                    sum = i;
+                    sum = a;
                 }
             }
             if (day <= days) {
-                high=mid;
+                high = mid-1;
             } else {
                 low = mid + 1;
             }
