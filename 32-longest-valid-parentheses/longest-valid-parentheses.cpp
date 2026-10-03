@@ -1,7 +1,6 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-
         stack<int> st;
         st.push(-1);
 
@@ -14,9 +13,7 @@ public:
             }
             else {
                 st.pop();
-
                 if (st.empty()) {
-                    // Current ')' cannot be matched
                     st.push(i);
                 }
                 else {
